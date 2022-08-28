@@ -1,4 +1,4 @@
-using Ordering.App;
+using Ordering.Application;
 using Ordering.Data;
 
 var builder = WebApplication.CreateBuilder(args);

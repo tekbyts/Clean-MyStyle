@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Ordering.App.Feature.Order.Query.OrderList;
+using Ordering.Application.Feature.Order.Query.OrderList;
 using Ordering.Domain.Model;
 
 namespace Ordering.Api.Controllers
