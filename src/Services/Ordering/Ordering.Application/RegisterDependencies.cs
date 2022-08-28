@@ -18,6 +18,8 @@ namespace Ordering.Application
             // Require MediatR.Extensions.Microsoft.DependencyInjection
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
+            // Application Services/Dependencies
+
             return services;
         }
     }

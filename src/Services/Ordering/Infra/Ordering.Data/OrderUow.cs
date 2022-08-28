@@ -17,13 +17,10 @@ namespace Ordering.Data
             _orderContext = orderContext;
         }
 
-        #region CRUD Operations
+        #region Basic CRUD Operations - Orders
 
-        /// Basic CRUD Operations
-        #region Basic CRUD Operations
-
-        // Get All Async
-        public async Task<IEnumerable<Order>> GetAllAsync()
+        // Get All Orders Async
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
         {
             var canConnect = await _orderContext.Database.CanConnectAsync();
             IEnumerable<Order> orders = new List<Order>();
@@ -39,29 +36,49 @@ namespace Ordering.Data
             return orders;
         }
 
-        // Get By Id
+        // Get Order By Id
+        public async Task<Order> GetOrderByIdAsync(int id)
+        {
+            var oder = await _orderContext.Orders.FindAsync(id);
+            return oder;
+        }
 
         // Add
+        public async Task<Order> AddOrderAsync(Order order)
+        {
+            try
+            {
+                await _orderContext.Orders.AddAsync(order);
+                await _orderContext.SaveChangesAsync();                
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return order;
+        }
 
         // Update
+        public async Task<Order> UpdateOrderAsync(Order order)
+        {
+            _orderContext.Orders.Update(order);
+            await _orderContext.SaveChangesAsync();
+            return await Task.FromResult(order);
+        }
 
         // Delete
 
-        #endregion
+        #endregion Basic CRUD Operations - Orders
 
-        /// Custom Queries/Operations
-        #region Custom Queries/Operations
+        #region Custom Queries/Operations - Orders
         // Get by Username
-        public async Task<IEnumerable<Order>> GetByUsernameAsync(string username)
+        public async Task<IEnumerable<Order>> GetOrdersByUsernameAsync(string username)
         {
             var orders = await _orderContext.Orders
-                .Where(q=> q.UserName.Equals(username, 
-                    StringComparison.InvariantCultureIgnoreCase)).ToListAsync();
+                .Where(q=> q.UserName.Equals(username)).ToListAsync();
 
             return orders;
         }
-        #endregion
-
-        #endregion
+        #endregion Custom Queries/Operations - Orders
     }
 }

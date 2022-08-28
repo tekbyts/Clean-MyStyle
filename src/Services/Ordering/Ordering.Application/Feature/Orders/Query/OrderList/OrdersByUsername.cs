@@ -3,7 +3,7 @@ using MediatR;
 using Ordering.Contracts.Persist;
 using Ordering.Domain.Model;
 
-namespace Ordering.Application.Feature.Order.Query.OrderList
+namespace Ordering.Application.Feature.Orders.Query.OrderList
 {
     public class OrdersByUsernameQuery : IRequest<List<OrderVm>>
     {
@@ -28,7 +28,7 @@ namespace Ordering.Application.Feature.Order.Query.OrderList
         public async Task<List<OrderVm>> Handle(OrdersByUsernameQuery request, CancellationToken cancellationToken)
         {
             // fetch orders
-            var orders = await _orderUow.GetByUsernameAsync(request.Username);
+            var orders = await _orderUow.GetOrdersByUsernameAsync(request.Username);
             return _mapper.Map<List<OrderVm>>(orders);
         }
     }

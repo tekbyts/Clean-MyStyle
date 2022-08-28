@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ordering.Application.Feature.Order.Query.OrderList
+namespace Ordering.Application.Feature.Orders.Query.OrderList
 {
     public class AllOrdersQuery : IRequest<List<OrderVm>>
     {
@@ -30,7 +30,7 @@ namespace Ordering.Application.Feature.Order.Query.OrderList
         public async Task<List<OrderVm>> Handle(AllOrdersQuery request, CancellationToken cancellationToken)
         {
             // fetch orders
-            var orders = await _orderUow.GetAllAsync();
+            var orders = await _orderUow.GetAllOrdersAsync();
             return _mapper.Map<List<OrderVm>>(orders);
         }
     }
