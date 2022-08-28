@@ -5,4 +5,4 @@ CQRS
 Mediatr
 Automapper
 
-Stage 1 Initial Boilerplate with clean architecture layers separation, CQRS queries, Mediatr, EF Core Code First Migrations
+Stage 2 CQRS Commands and additional Migrations
